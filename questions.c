@@ -11,8 +11,9 @@
 #include <string.h>
 #include "questions.h"
 #include "dfa.h"
+#include "nfa.h"
 
-
+//Exactly the string ab
 DFA *ab() {
     printf("Exactly the string 'ab'\n");
     DFA *dfaAB = DFA_new(3);
@@ -28,6 +29,7 @@ DFA *ab() {
     return dfaAB;
 }
 
+//Strings that begin with the letters 'ab'
 DFA *ab_begin() {
     printf("Strings starting with 'ab'\n");
     DFA *dfaAB_begin = DFA_new(3);
@@ -45,6 +47,7 @@ DFA *ab_begin() {
     return dfaAB_begin;
 }
 
+//Binary strings with an even number of 1s
 DFA *even1() {
     printf("Binary strings with an even number of 1s\n");
     DFA *dfa_even = DFA_new(3);
@@ -65,6 +68,7 @@ DFA *even1() {
     return dfa_even;
 }
 
+//Binary strings with an even number of 0s and 1s
 DFA *even1even2() {
     printf("Binary strings with an even number of 1s\n");
     DFA *dfa_even = DFA_new(4);
@@ -87,6 +91,7 @@ DFA *even1even2() {
     return dfa_even;
 }
 
+//Recgonizes strings with prefixes 'mr.', 'mrs.', 'miss', 'ms.'
 DFA *prefix() {
     printf("Strings that start with 'mr.', 'mrs.', 'miss', and 'ms.'\n");
     DFA *prefix = DFA_new(8);
@@ -110,5 +115,61 @@ DFA *prefix() {
     printf("dr. f: %d\n", DFA_execute(prefix, "dr. f"));
     
     return prefix;
+}
+
+//Strings ending in 'man'
+NFA *man() {
+    printf("Strings ending in 'man'\n");
+    NFA *manNFA = NFA_new(4);
+    NFA_add_transition_all(manNFA, 0, 0);
+    NFA_add_transition(manNFA, 0, 'm', 1);
+    NFA_add_transition(manNFA, 1, 'a', 2);
+    NFA_add_transition(manNFA, 2, 'n', 3);
+    NFA_set_accepting(manNFA, 3, TRUE);
+    printf("superman: %d\n", NFA_execute(manNFA, "superman"));
+    printf("catwoman: %d\n", NFA_execute(manNFA, "catwoman"));
+    printf("wonderboy: %d\n", NFA_execute(manNFA, "wonderboy"));
+    
+    return manNFA;
+}
+
+//Strings with more than one letter of 'washigto' or two 'n'
+NFA *washington() {
+    printf("Strings that conatain more than one letter of the same letter of 'washigto' or more than two 'n's");
+    NFA *washingtonNFA = NFA_new(5);
+    NFA_add_transition(washingtonNFA, 0, 'n', 3);
+    NFA_add_transition(washingtonNFA, 3, 'n', 5);
+    NFA_add_transition(washingtonNFA, 5, 'n', 2);
+    NFA_add_transition_str(washingtonNFA, 0, "washigto", 1);
+    NFA_add_transition_str(washingtonNFA, 1, "washigto", 2);
+    NFA_add_transition_all(washingtonNFA, 0, 0);
+    NFA_add_transition_all(washingtonNFA, 1, 1);
+    NFA_add_transition_all(washingtonNFA, 2, 2);
+    NFA_add_transition_all(washingtonNFA, 3, 3);
+    NFA_add_transition_all(washingtonNFA, 4, 4);
+    NFA_set_accepting(washingtonNFA, 2, TRUE);
+    printf("washington: %d\n", NFA_execute(washingtonNFA, "washington"));
+    printf("washingtonwashington: %d\n", NFA_execute(washingtonNFA, "washingtonwashington"));
+    printf("washintmachine: %d\n", NFA_execute(washingtonNFA, "washingmachine"));
+    
+    return washingtonNFA;
+}
+
+//Represents the most common letters in english and vowels
+NFA *common() {
+    printf("Strings that contain one of the most common constanants in English 'tnshrdl' once or two vowels");
+    NFA *commonNFA = NFA_new(3);
+    NFA_add_transition_str(commonNFA, 0, "tnshrdl", 1);
+    NFA_add_transition_str(commonNFA, 0, "aeiouy", 2);
+    NFA_add_transition_str(commonNFA, 2, "aeiouy", 1);
+    NFA_add_transition_all(commonNFA, 0, 0);
+    NFA_add_transition_all(commonNFA, 1, 1);
+    NFA_add_transition_all(commonNFA, 2, 2);
+    NFA_set_accepting(commonNFA, 1, TRUE);
+    printf("queueing: %d\n", NFA_execute(commonNFA, "queueing"));
+    printf("sfgbm: %d\n", NFA_execute(commonNFA, "sfgbm"));
+    printf("ab: %d\n", NFA_execute(commonNFA, "ab"));
+    
+    return commonNFA;
 }
 

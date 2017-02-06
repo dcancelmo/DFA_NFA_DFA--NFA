@@ -11,6 +11,7 @@
 #include <string.h>
 #include "questions.h"
 #include "dfa.h"
+#include "nfa.h"
 
 int main(int argc, char* argv[]) {
     
@@ -21,6 +22,9 @@ int main(int argc, char* argv[]) {
     even1even2();
     prefix();
     printf("__QUESTION 2__\n");
+    man();
+    washington();
+    common();
 
     
 }

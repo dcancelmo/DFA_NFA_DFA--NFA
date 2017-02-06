@@ -13,12 +13,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include "dfa.h"
+#include "nfa.h"
 
 DFA *ab();
 DFA *ab_begin();
 DFA *even1();
 DFA *even1even2();
 DFA *prefix();
+NFA *man();
+NFA *washington();
+NFA *common();
 
 
 #endif /* questions_h */

@@ -9,6 +9,7 @@
 #define _nfa_h_gf
 
 #include <stdbool.h>
+#include "IntSet.h"
 
 // Assume input is 7-bit US-ASCII characters
 #define NFA_NSYMBOLS 128
