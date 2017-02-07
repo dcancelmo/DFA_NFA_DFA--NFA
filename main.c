@@ -16,15 +16,15 @@
 int main(int argc, char* argv[]) {
     
     printf("__QUESTION 1__\n");
-    ab();
-    ab_begin();
-    even1();
-    even1even2();
-    prefix();
+    free(ab());
+    free(ab_begin());
+    free(even1());
+    free(even1even2());
+    free(prefix());
     printf("__QUESTION 2__\n");
-    man();
-    washington();
-    common();
-
+    free(man());
+    free(washington());
+    free(common());
+    printf("__QUESTION 3__\n");
     
 }

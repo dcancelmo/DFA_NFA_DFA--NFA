@@ -113,14 +113,17 @@ void DFA_print(DFA *dfa) {
             printf("State: %d\tAccepting?: No\tTransitions:", i);
         }
         
+        //Counts to see if accepting of all characters
         int transCount = 0;
         for (int j = 0; dfa->states[i].transitions[j] != '\0'; j++) {
             if (dfa->states[i].transitions[j] != DFA_NO_TRANSITION) {
                 transCount += 1;
             }
         }
+        //If accepting of all characters
         if (transCount >= DFA_NSYMBOLS) {
             printf(" All characters");
+        //Else print all characters
         } else {
             for (int j = 0; dfa->states[i].transitions[j] != '\0'; j++) {
                 if (dfa->states[i].transitions[j] != DFA_NO_TRANSITION) {

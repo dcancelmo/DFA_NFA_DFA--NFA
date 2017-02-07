@@ -49,8 +49,9 @@ extern void NFA_set_accepting(NFA *nfa, int statenum, bool value);
 extern bool NFA_is_accepting(NFA *nfa);
 
 extern bool NFA_execute(NFA *nfa, char *input);
+extern bool NFA_recursive_execute(NFA *nfa, char *input, IntSet *starting_states);
 
 // True to enable tracing during NFA_Execute
-extern int NFA_tracing;
+extern int NFA_tracing; //Did not use because I did not know what this was supposed to be for in this context
 
 #endif

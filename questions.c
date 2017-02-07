@@ -135,29 +135,52 @@ NFA *man() {
 
 //Strings with more than one letter of 'washigto' or two 'n'
 NFA *washington() {
-    printf("Strings that conatain more than one letter of the same letter of 'washigto' or more than two 'n's");
-    NFA *washingtonNFA = NFA_new(5);
-    NFA_add_transition(washingtonNFA, 0, 'n', 3);
-    NFA_add_transition(washingtonNFA, 3, 'n', 5);
-    NFA_add_transition(washingtonNFA, 5, 'n', 2);
-    NFA_add_transition_str(washingtonNFA, 0, "washigto", 1);
-    NFA_add_transition_str(washingtonNFA, 1, "washigto", 2);
+    printf("Strings that conatain more than one letter of the same letter of 'washigto' or more than two 'n's\n");
+    NFA *washingtonNFA = NFA_new(12);
+    NFA_add_transition(washingtonNFA, 0, 'w', 1);
+    NFA_add_transition(washingtonNFA, 1, 'w', 11);
+    NFA_add_transition(washingtonNFA, 0, 'a', 2);
+    NFA_add_transition(washingtonNFA, 2, 'a', 11);
+    NFA_add_transition(washingtonNFA, 0, 's', 3);
+    NFA_add_transition(washingtonNFA, 3, 's', 11);
+    NFA_add_transition(washingtonNFA, 0, 'h', 4);
+    NFA_add_transition(washingtonNFA, 4, 'h', 11);
+    NFA_add_transition(washingtonNFA, 0, 'i', 5);
+    NFA_add_transition(washingtonNFA, 5, 'i', 11);
+    NFA_add_transition(washingtonNFA, 0, 'g', 6);
+    NFA_add_transition(washingtonNFA, 6, 'g', 11);
+    NFA_add_transition(washingtonNFA, 0, 't', 7);
+    NFA_add_transition(washingtonNFA, 7, 't', 11);
+    NFA_add_transition(washingtonNFA, 0, 'o', 8);
+    NFA_add_transition(washingtonNFA, 8, 'o', 11);
+    NFA_add_transition(washingtonNFA, 0, 'n', 9);
+    NFA_add_transition(washingtonNFA, 9, 'n', 10);
+    NFA_add_transition(washingtonNFA, 10, 'n', 11);
+
     NFA_add_transition_all(washingtonNFA, 0, 0);
     NFA_add_transition_all(washingtonNFA, 1, 1);
     NFA_add_transition_all(washingtonNFA, 2, 2);
     NFA_add_transition_all(washingtonNFA, 3, 3);
     NFA_add_transition_all(washingtonNFA, 4, 4);
-    NFA_set_accepting(washingtonNFA, 2, TRUE);
+    NFA_add_transition_all(washingtonNFA, 5, 5);
+    NFA_add_transition_all(washingtonNFA, 6, 6);
+    NFA_add_transition_all(washingtonNFA, 7, 7);
+    NFA_add_transition_all(washingtonNFA, 8, 8);
+    NFA_add_transition_all(washingtonNFA, 9, 9);
+    NFA_add_transition_all(washingtonNFA, 10, 10);
+    NFA_add_transition_all(washingtonNFA, 11, 11);
+
+    NFA_set_accepting(washingtonNFA, 11, TRUE);
     printf("washington: %d\n", NFA_execute(washingtonNFA, "washington"));
     printf("washingtonwashington: %d\n", NFA_execute(washingtonNFA, "washingtonwashington"));
-    printf("washintmachine: %d\n", NFA_execute(washingtonNFA, "washingmachine"));
+    printf("washingmachine: %d\n", NFA_execute(washingtonNFA, "washingmachine"));
     
     return washingtonNFA;
 }
 
 //Represents the most common letters in english and vowels
 NFA *common() {
-    printf("Strings that contain one of the most common constanants in English 'tnshrdl' once or two vowels");
+    printf("Strings that contain one of the most common constanants in English 'tnshrdl' once or two vowels\n");
     NFA *commonNFA = NFA_new(3);
     NFA_add_transition_str(commonNFA, 0, "tnshrdl", 1);
     NFA_add_transition_str(commonNFA, 0, "aeiouy", 2);
@@ -169,6 +192,7 @@ NFA *common() {
     printf("queueing: %d\n", NFA_execute(commonNFA, "queueing"));
     printf("sfgbm: %d\n", NFA_execute(commonNFA, "sfgbm"));
     printf("ab: %d\n", NFA_execute(commonNFA, "ab"));
+    printf("aba: %d\n", NFA_execute(commonNFA, "aba"));
     
     return commonNFA;
 }
