@@ -30,7 +30,7 @@ DFA *DFA_new(int nstates) {
     return newDFA;
 }
 
-//Frees memory of the dfa's states and the dfa as a whole
+//Frees memory of the dfa's transitions, states, and the dfa as a whole
 void DFA_free(DFA *dfa) {
     for (int i = 0; i < dfa->nstates; i++) {
         free(dfa->states->transitions);
@@ -94,7 +94,6 @@ int DFA_execute(DFA *dfa, char *input) {
             //printf("Test\n");
             return FALSE;
         }
-
     }
     int ending_state = DFA_get_current_state(dfa);
     //Resets DFA
@@ -105,14 +104,12 @@ int DFA_execute(DFA *dfa, char *input) {
 
 //Prints each state of the array, whether it is accepting or not and its transitions
 void DFA_print(DFA *dfa) {
-    
     for (int i = 0; i < DFA_get_size(dfa); i++) {
         if (dfa->states[i].is_accepting == TRUE) {
             printf("State: %d\tAccepting?: Yes\tTransitions:", i);
         } else {
             printf("State: %d\tAccepting?: No\tTransitions:", i);
         }
-        
         //Counts to see if accepting of all characters
         int transCount = 0;
         for (int j = 0; dfa->states[i].transitions[j] != '\0'; j++) {
@@ -128,15 +125,13 @@ void DFA_print(DFA *dfa) {
             for (int j = 0; dfa->states[i].transitions[j] != '\0'; j++) {
                 if (dfa->states[i].transitions[j] != DFA_NO_TRANSITION) {
                     char c = j;
+                    //Prevents printing null
                     if (c != '\200') {
                         printf(" %c", c);
                     }
                 }
             }
         }
-        
         printf("\n");
-        
     }
-    
 }

@@ -6,7 +6,7 @@ I did not collaborate with anyone on this assignment.
 ReadMe file
 
 Instructions:
-To build the executable file use the terminal while in the project directory and type-
+To build the executable file and to run it at the same time all in one command use the terminal while in the project directory and type-
 
 	make
 
@@ -28,6 +28,9 @@ To build, run, and clean all in one command type-
 
 	make run-clean
 
+If at any point a segmentation fault occurs:
+Run again until it works. I reccomend using ‘make run-clean’ to avoid seg faults. 
+
 Output explanation:
 The output is broken up into question 1, 2, and 3. Question 1 shows the output of the DFAs, question 2 the output of the NFAs, and question 3 the output of the NFA->DFA conversions.
 Question 1 shows a one line description of the language the DFA accepts, a print out of the states of the DFA, and each string tested on it and its output displayed as the format-
@@ -36,6 +39,5 @@ Question 1 shows a one line description of the language the DFA accepts, a print
 
 The output will be a 0 or 1. 0 means the DFA did not accept the input string as part of its language and 1 means that it did.
 The same is true for question 2 except this is done with NFAs and it does not print out the states.
-Question 3 shows
-
-TODO
+Question 3 shows the output of the original NFA again followed by the output of the NFA translated to a DFA for comparison.
+The custom NFA ‘common’ conversion is commented out of ‘main.c’ because when run it causes a segmentation fault. I believe because too much memory is in use. Otherwise, it works properly.

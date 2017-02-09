@@ -12,6 +12,7 @@
 #include "questions.h"
 #include "dfa.h"
 #include "nfa.h"
+#include "NFA-DFA.h"
 
 //Exactly the string ab
 DFA *ab() {
@@ -195,5 +196,27 @@ NFA *common() {
     printf("aba: %d\n", NFA_execute(commonNFA, "aba"));
     
     return commonNFA;
+}
+
+DFA *convert(NFA *nfa, char* name) {
+    printf("Original DFA shown above. Now converting given NFA '%s' to a DFA. Compare to above original for accuracy: \n", name);
+    DFA *dfa = NFA_DFA_Convert(nfa);
+    free(nfa);
+    if (strcmp(name, "man") == 0) {
+        printf("superman: %d\n", DFA_execute(dfa, "superman"));
+        printf("catwoman: %d\n", DFA_execute(dfa, "catwoman"));
+        printf("wonderboy: %d\n", DFA_execute(dfa, "wonderboy"));
+    } else if (strcmp(name, "washington") == 0) {
+        printf("washington: %d\n", DFA_execute(dfa, "washington"));
+        printf("washingtonwashington: %d\n", DFA_execute(dfa, "washingtonwashington"));
+        printf("washingmachine: %d\n", DFA_execute(dfa, "washingmachine"));
+    } else if (strcmp(name, "common") == 0) {
+        printf("queueing: %d\n", DFA_execute(dfa, "queueing"));
+        printf("sfgbm: %d\n", DFA_execute(dfa, "sfgbm"));
+        printf("ab: %d\n", DFA_execute(dfa, "ab"));
+        printf("aba: %d\n", DFA_execute(dfa, "aba"));
+    }
+    
+    return dfa;
 }
 

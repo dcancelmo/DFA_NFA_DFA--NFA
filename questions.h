@@ -14,15 +14,17 @@
 #include <string.h>
 #include "dfa.h"
 #include "nfa.h"
+#include "NFA-DFA.h"
 
-DFA *ab();
-DFA *ab_begin();
-DFA *even1();
-DFA *even1even2();
-DFA *prefix();
-NFA *man();
-NFA *washington();
-NFA *common();
+extern DFA *ab();
+extern DFA *ab_begin();
+extern DFA *even1();
+extern DFA *even1even2();
+extern DFA *prefix();
+extern NFA *man();
+extern NFA *washington();
+extern NFA *common();
+extern DFA *convert(NFA *nfa, char* name);
 
 
 #endif /* questions_h */

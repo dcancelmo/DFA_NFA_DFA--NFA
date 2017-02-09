@@ -12,6 +12,7 @@
 #include "questions.h"
 #include "dfa.h"
 #include "nfa.h"
+#include "NFA-DFA.h"
 
 int main(int argc, char* argv[]) {
     
@@ -21,10 +22,16 @@ int main(int argc, char* argv[]) {
     free(even1());
     free(even1even2());
     free(prefix());
-    printf("__QUESTION 2__\n");
+    printf("\n__QUESTION 2__\n");
     free(man());
     free(washington());
     free(common());
-    printf("__QUESTION 3__\n");
-    
+    printf("\n__QUESTION 3__\n");
+    free(convert(man(), "man"));
+    //free(man);
+    free(convert(washington(), "washington"));
+    //free(washington);
+    //free(convert(common(), "common"));
+    //free(common);
+    return 0;
 }
